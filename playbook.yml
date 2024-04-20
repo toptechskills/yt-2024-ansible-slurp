@@ -1,5 +1,16 @@
 - name: Read plain text file from the remote hosts
   hosts: all
   tasks:
+    - name: Read plain text file from host
+      ansible.builtin.slurp:
+        src: /etc/hostname
+      register: slurp_result
 
+    - name: Print result
+      ansible.builtin.debug:
+        var: slurp_result
+
+    - name: Print raw string
+      ansible.builtin.debug:
+        msg: "{{ slurp_result.content | b64decode }}"
 

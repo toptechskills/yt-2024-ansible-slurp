@@ -1,0 +1,20 @@
+- name: Read json file from the remote hosts
+  hosts: all
+  tasks:
+    - name: Read json file from host
+      ansible.builtin.slurp:
+        src: /home/vagrant/slurp.json
+      register: slurp_result
+
+    - name: Print result
+      ansible.builtin.debug:
+        var: slurp_result
+
+    - name: Load data into variable
+      ansible.builtin.set_fact:
+        my_var: "{{ slurp_result.content | b64decode | from_json }}"
+
+    - name: Print raw string
+      ansible.builtin.debug:
+        var: my_var.key0
+

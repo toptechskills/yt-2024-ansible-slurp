@@ -1,0 +1,19 @@
+- name: Read yaml file from the remote hosts
+  hosts: all
+  tasks:
+    - name: Read yaml file from host
+      ansible.builtin.shell: cat /home/vagrant/slurp.yaml | grep key0
+      register: shell_result
+
+    - name: Print result
+      ansible.builtin.debug:
+        var: shell_result
+
+    - name: Load data into variable
+      ansible.builtin.set_fact:
+        my_var: "{{ shell_result.stdout | from_yaml }}"
+
+    - name: Print raw string
+      ansible.builtin.debug:
+        var: my_var.key1
+

@@ -1,0 +1,2 @@
+# Don't commit local state from Vagrant
+.vagrant/

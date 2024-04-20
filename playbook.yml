@@ -1,0 +1,5 @@
+- name: Read plain text file from the remote hosts
+  hosts: all
+  tasks:
+
+

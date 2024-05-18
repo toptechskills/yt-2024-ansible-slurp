@@ -3,7 +3,8 @@
 
 require "etc"
 
-PUBLIC_KEY_PATH = "/Users/percy/.ssh/id_rsa.pub".freeze
+# Change this to your SSH public key path
+PUBLIC_KEY_PATH = "CHANGEME".freeze
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-22.04-arm64"
